@@ -50,6 +50,14 @@ describe('Work item list', function () {
     page.clicklocalLoginButton();
     var RHDpage = new OpenShiftIoRHDLoginPage();
     RHDpage.doLogin(browser);
+
+    // Dump auth and refresh token on console.
+    browser.executeScript("return window.localStorage.getItem('auth_token');").then(function(val) {
+      console.log("Auth Token: " + val);
+    });
+    browser.executeScript("return window.localStorage.getItem('refresh_token');").then(function(val) {
+      console.log("Refresh Token: " + val);
+    });
   });
 
   /* User can read, update, remove assignee on a workitem  */

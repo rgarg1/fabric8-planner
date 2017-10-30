@@ -67,7 +67,10 @@ class OpenShiftIoRHDLoginPage {
   }
 
   get rhdLoginButton () {
-     return element(by.id("kc-login"));
+    var elm = element(by.id("kc-login"));
+    // Login button is not visible on smaller screen so scroll to the login button.
+    browser.executeScript("arguments[0].scrollIntoView();", elm.getWebElement());
+    return elm
   }
   clickRhdLoginButton () {
     browser.wait(until.presenceOf(this.rhdLoginButton), constants.WAIT, 'Failed to find RHD login');
